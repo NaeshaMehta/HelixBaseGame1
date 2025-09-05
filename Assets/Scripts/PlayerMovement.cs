@@ -12,19 +12,19 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        gravityInverted = false;
         Physics.gravity = gravityMultiplier * Vector3.down * 9.81f;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(!isGameOver)
-            rb.linearVelocity = new Vector3(rb.linearVelocity.x, rb.linearVelocity.y, movementSpeed);
+        if (isGameOver)
+            return;
+        rb.linearVelocity = new Vector3(rb.linearVelocity.x, rb.linearVelocity.y, movementSpeed);  
         if (Input.GetKeyDown(KeyCode.Space))
         {
             gravityInverted = !gravityInverted;
-            Physics.gravity = gravityMultiplier * (gravityInverted ? Vector3.up * 9.81f : Vector3.down * 9.81f);
+            Physics.gravity = 9.81f * gravityMultiplier * (gravityInverted ? Vector3.up : Vector3.down);
         }
     }
     private void OnCollisionEnter(Collision collision)
@@ -37,7 +37,7 @@ public class PlayerMovement : MonoBehaviour
     }
     public void RestartGame()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene("BaseGame");
         isGameOver = false;
     }
 }

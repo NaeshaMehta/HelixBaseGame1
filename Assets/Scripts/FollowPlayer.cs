@@ -4,7 +4,6 @@ public class FollowPlayer : MonoBehaviour
 {
     public GameObject target;
     public Vector3 offset;
-    public float yFollowConst = 0.3f;
     void Start()
     {
 
