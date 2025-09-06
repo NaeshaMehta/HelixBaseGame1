@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -8,6 +9,7 @@ public class PlayerMovement : MonoBehaviour
     public float movementSpeed = 10f;
     public float gravityMultiplier = 2f;
     private bool isGameOver;
+    public TMP_Text scoreMessage;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -26,6 +28,7 @@ public class PlayerMovement : MonoBehaviour
             gravityInverted = !gravityInverted;
             Physics.gravity = 9.81f * gravityMultiplier * (gravityInverted ? Vector3.up : Vector3.down);
         }
+        scoreMessage.text = "Score: " + ComputeScore();
     }
     private void OnCollisionEnter(Collision collision)
     {
@@ -39,5 +42,9 @@ public class PlayerMovement : MonoBehaviour
     {
         SceneManager.LoadScene("BaseGame");
         isGameOver = false;
+    }
+    private int ComputeScore()
+    {
+        return Mathf.RoundToInt(transform.position.z);
     }
 }

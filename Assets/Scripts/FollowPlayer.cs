@@ -3,7 +3,8 @@ using UnityEngine;
 public class FollowPlayer : MonoBehaviour
 {
     public GameObject target;
-    public Vector3 offset;
+    public float offset = -7f;
+    private Vector3 cameraLocation = new Vector3();
     void Start()
     {
 
@@ -12,6 +13,8 @@ public class FollowPlayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position = new Vector3(transform.position.x, transform.position.y, target.transform.position.z + offset.z);
+        cameraLocation = transform.position;
+        cameraLocation.z = target.transform.position.z + offset;
+        transform.position = cameraLocation;
     }
 }
