@@ -26,7 +26,12 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             gravityInverted = !gravityInverted;
-            Physics.gravity = 9.81f * gravityMultiplier * (gravityInverted ? Vector3.up : Vector3.down);
+            Vector3 direction;
+            if(gravityInverted == true)
+                direction = Vector3.up;
+            else
+                direction = Vector3.down;
+            Physics.gravity = 9.81f * gravityMultiplier * direction;
         }
         scoreMessage.text = "Score: " + ComputeScore();
     }
