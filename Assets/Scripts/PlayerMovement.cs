@@ -22,7 +22,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (isGameOver)
             return;
-        rb.linearVelocity = new Vector3(rb.linearVelocity.x, rb.linearVelocity.y, movementSpeed);  
+        rb.linearVelocity = new Vector3(rb.linearVelocity.x, rb.linearVelocity.y, movementSpeed);
         if (Input.GetKeyDown(KeyCode.Space))
         {
             gravityInverted = !gravityInverted;

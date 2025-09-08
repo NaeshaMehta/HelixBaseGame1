@@ -12,11 +12,11 @@ public class TunnelMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))
+        if (Input.GetKey(KeyCode.RightArrow))
         {
             transform.Rotate(0f, 0f, -rotspeed * Time.deltaTime);
         }
-        else if(Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A))
+        else if(Input.GetKey(KeyCode.LeftArrow))
         {
             transform.Rotate(0f, 0f, rotspeed * Time.deltaTime);
         }
