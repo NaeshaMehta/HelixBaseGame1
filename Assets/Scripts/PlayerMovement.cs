@@ -6,9 +6,9 @@ public class PlayerMovement : MonoBehaviour
 {
     private Rigidbody rb;
     private bool gravityInverted = false;
-    public float movementSpeed = 10f;
     public float gravityMultiplier = 2f;
-    private bool isGameOver;
+    public float movementSpeed = 10f;
+    public CollisionHandler collisionScript;
     public TMP_Text scoreMessage;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -20,7 +20,7 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (isGameOver)
+        if (collisionScript.isGameOver)
             return;
         rb.linearVelocity = new Vector3(rb.linearVelocity.x, rb.linearVelocity.y, movementSpeed);
         if (Input.GetKeyDown(KeyCode.Space))
@@ -34,19 +34,6 @@ public class PlayerMovement : MonoBehaviour
             Physics.gravity = 9.81f * gravityMultiplier * direction;
         }
         scoreMessage.text = "Score: " + ComputeScore();
-    }
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("Obstacle") || collision.gameObject.CompareTag("EndBlock"))
-        {
-            isGameOver = true;
-            Invoke("RestartGame", 2f);
-        }
-    }
-    public void RestartGame()
-    {
-        SceneManager.LoadScene("BaseGame");
-        isGameOver = false;
     }
     private int ComputeScore()
     {
