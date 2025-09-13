@@ -8,7 +8,6 @@ public class PlayerMovement : MonoBehaviour
     private bool gravityInverted = false;
     public float gravityMultiplier = 2f;
     public float movementSpeed = 10f;
-    public CollisionHandler collisionScript;
     public TMP_Text scoreMessage;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -20,18 +19,15 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (collisionScript.isGameOver)
-            return;
+        float gravityValue = 9.81f * gravityMultiplier;
         rb.linearVelocity = new Vector3(rb.linearVelocity.x, rb.linearVelocity.y, movementSpeed);
         if (Input.GetKeyDown(KeyCode.Space))
         {
             gravityInverted = !gravityInverted;
-            Vector3 direction;
             if(gravityInverted == true)
-                direction = Vector3.up;
+                Physics.gravity = gravityValue * Vector3.up;
             else
-                direction = Vector3.down;
-            Physics.gravity = 9.81f * gravityMultiplier * direction;
+                Physics.gravity = gravityValue * Vector3.down;
         }
         scoreMessage.text = "Score: " + ComputeScore();
     }

@@ -3,7 +3,7 @@ using UnityEngine.SceneManagement;
 
 public class CollisionHandler : MonoBehaviour
 {
-    public bool isGameOver;
+    public PlayerMovement playerMovementScript;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -20,13 +20,13 @@ public class CollisionHandler : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Obstacle") || collision.gameObject.CompareTag("EndBlock"))
         {
-            isGameOver = true;
             Invoke("RestartGame", 2f);
+            playerMovementScript.enabled = false;
         }
     }
     public void RestartGame()
     {
         SceneManager.LoadScene("BaseGame");
-        isGameOver = false;
+        playerMovementScript.enabled = true;
     }
 }
