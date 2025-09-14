@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class TunnelMovement : MonoBehaviour
 {
-    public float rotspeed = 10f;
+    public float rotspeed = 90f;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {

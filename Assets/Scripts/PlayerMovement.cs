@@ -6,8 +6,8 @@ public class PlayerMovement : MonoBehaviour
 {
     private Rigidbody rb;
     private bool gravityInverted = false;
-    public float gravityMultiplier = 2f;
-    public float movementSpeed = 10f;
+    public float gravityMultiplier = 10f;
+    public float movementSpeed = 15f;
     public TMP_Text scoreMessage;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -19,8 +19,8 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float gravityValue = 9.81f * gravityMultiplier;
         rb.linearVelocity = new Vector3(rb.linearVelocity.x, rb.linearVelocity.y, movementSpeed);
+        float gravityValue = 9.81f * gravityMultiplier;    
         if (Input.GetKeyDown(KeyCode.Space))
         {
             gravityInverted = !gravityInverted;
