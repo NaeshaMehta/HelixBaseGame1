@@ -26,7 +26,7 @@ public class CollisionHandler : MonoBehaviour
     }
     public void RestartGame()
     {
-        SceneManager.LoadScene("BaseGame");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         playerMovementScript.enabled = true;
     }
 }
